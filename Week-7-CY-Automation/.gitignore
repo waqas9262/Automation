@@ -1,0 +1,5 @@
+# Ignore node modules
+node_modules/
+
+# Ignore macOS system files (optional for you on Windows)
+.DS_Store
