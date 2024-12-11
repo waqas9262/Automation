@@ -1,6 +1,6 @@
 import HomePage from "../../Page_Objects/home.page";
 import RegistrationPage from "../../Page_Objects/registration.page";
-import loginPage from "../../Page_Objects/login.page";
+import LoginPage from "../../Page_Objects/login.page";
 import DashboardPage from "../../Page_Objects/Dashboard.page";
 
 describe("Register", () => {
@@ -21,9 +21,9 @@ describe("Register", () => {
     RegistrationPage.url.should("include", "/auth/register");
 
     HomePage.loginBtn.click();
-    loginPage.emailInput.type("TEST@GMAIL.COM");
-    loginPage.passwordInput.type("PASSWORD");
-    loginPage.loginBtn.click();
+    LoginPage.emailInput.type("TEST@GMAIL.COM");
+    LoginPage.passwordInput.type("PASSWORD");
+    LoginPage.loginBtn.click();
 
     // Verify
     DashboardPage.roleLbl.should("have.text", "role: user");
