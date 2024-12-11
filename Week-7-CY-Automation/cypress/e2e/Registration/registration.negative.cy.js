@@ -1,6 +1,7 @@
 import homePage from "../../Page_Objects/home.page";
-import registrationPage from "../../Page_Objects/registration.page";
 import RegistrationPage from "../../Page_Objects/registration.page";
+import loginPage from "../../Page_Objects/login.page";
+import DashboardPage from "../../Page_Objects/Dashboard.page";
 
 describe("Register", () => {
   beforeEach(() => {
@@ -16,8 +17,18 @@ describe("Register", () => {
     RegistrationPage.submitBtn.click();
 
     // Verify
-    registrationPage.Message.should("be.visible");
-    registrationPage.url.should("include", "/auth/register");
+    RegistrationPage.Message.should("be.visible");
+    RegistrationPage.url.should("include", "/auth/register");
+
+    homePage.loginBtn.click();
+    loginPage.emailInput.type("TEST@GMAIL.COM");
+    loginPage.passwordInput.type("PASSWORD");
+    loginPage.loginBtn.click();
+
+    // Verify
+    DashboardPage.roleLbl.should("have.text", "role: user");
+    DashboardPage.title.should("eq", "User: Profile | Delek Homes");
+    DashboardPage.FullNameLbl.should("have.text", "TEST1  NOTEST");    
   });
 
   it("Should not register without filling in required fields", () => {
