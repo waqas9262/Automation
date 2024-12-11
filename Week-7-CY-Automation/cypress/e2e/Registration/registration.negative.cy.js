@@ -1,4 +1,4 @@
-import homePage from "../../Page_Objects/home.page";
+import HomePage from "../../Page_Objects/home.page";
 import RegistrationPage from "../../Page_Objects/registration.page";
 import loginPage from "../../Page_Objects/login.page";
 import DashboardPage from "../../Page_Objects/Dashboard.page";
@@ -9,7 +9,7 @@ describe("Register", () => {
   });
 
   it("Should not register a new user with existing account", () => {
-    homePage.registerBtn.click();
+    HomePage.registerBtn.click();
     RegistrationPage.firstNameInput.type("Waqas");
     RegistrationPage.lastNameInput.type("Khan");
     RegistrationPage.emailInput.type("TEST@GMAIL.COM");
@@ -20,7 +20,7 @@ describe("Register", () => {
     RegistrationPage.Message.should("be.visible");
     RegistrationPage.url.should("include", "/auth/register");
 
-    homePage.loginBtn.click();
+    HomePage.loginBtn.click();
     loginPage.emailInput.type("TEST@GMAIL.COM");
     loginPage.passwordInput.type("PASSWORD");
     loginPage.loginBtn.click();
@@ -32,7 +32,7 @@ describe("Register", () => {
   });
 
   it("Should not register without filling in required fields", () => {
-    homePage.registerBtn.click();
+    HomePage.registerBtn.click();
     RegistrationPage.submitBtn.click();
 
     // Verify validation error messages

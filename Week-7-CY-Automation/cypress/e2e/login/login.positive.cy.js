@@ -1,5 +1,5 @@
-import loginPage from "../../Page_Objects/login.page";
-import homePage from "../../Page_Objects/home.page";
+import LoginPage from "../../Page_Objects/login.page";
+import HomePage from "../../Page_Objects/home.page";
 import DashboardPage from "../../Page_Objects/Dashboard.page";
 
 describe("login", () => {
@@ -8,10 +8,10 @@ describe("login", () => {
   });
 
   it("Should login with an existing account", () => {
-    homePage.loginBtn.click();
-    loginPage.emailInput.type("TEST@GMAIL.COM");
-    loginPage.passwordInput.type("PASSWORD");
-    loginPage.loginBtn.click();
+    HomePage.loginBtn.click();
+    LoginPage.emailInput.type("TEST@GMAIL.COM");
+    LoginPage.passwordInput.type("PASSWORD");
+    LoginPage.loginBtn.click();
 
     // Verify
     DashboardPage.roleLbl.should("have.text", "role: user");
@@ -20,15 +20,15 @@ describe("login", () => {
   });
 
   it("Should logout Successfully", () => {
-    homePage.loginBtn.click();
-    loginPage.emailInput.type("TEST@GMAIL.COM");
-    loginPage.passwordInput.type("PASSWORD");
-    loginPage.loginBtn.click();
+    HomePage.loginBtn.click();
+    LoginPage.emailInput.type("TEST@GMAIL.COM");
+    LoginPage.passwordInput.type("PASSWORD");
+    LoginPage.loginBtn.click();
     DashboardPage.PersonIconBtn.click();
     DashboardPage.LogoutBtn.click();
 
     // Verify
-    loginPage.title.should("eq", "Login | Delek Homes");
-    loginPage.loginButton.should("be.visible");
+    LoginPage.title.should("eq", "Login | Delek Homes");
+    LoginPage.loginButton.should("be.visible");
   });
 });

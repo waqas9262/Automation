@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
-import homePage from "../../Page_Objects/home.page";
+import HomePage from "../../Page_Objects/home.page";
 import RegistrationPage from "../../Page_Objects/registration.page";
 import DashboardPage from "../../Page_Objects/Dashboard.page";
-import loginPage from "../../Page_Objects/login.page";
+import LoginPage from "../../Page_Objects/login.page";
 
 const email = faker.internet.email();
 const password = faker.string.uuid();
@@ -13,7 +13,7 @@ describe("Register", () => {
   });
 
   it("Should register a new user account", () => {
-    homePage.registerBtn.click();
+    HomePage.registerBtn.click();
     RegistrationPage.firstNameInput.type("Waqas");
     RegistrationPage.lastNameInput.type("Khan");
     RegistrationPage.emailInput.type(email);
@@ -25,12 +25,11 @@ describe("Register", () => {
     DashboardPage.FullNameLbl.should("have.text", "Waqas  Khan");
     DashboardPage.title.should("eq", "User: Profile | Delek Homes");
     DashboardPage.url.should("include", "dashboard/user/profile");
-
     DashboardPage.PersonIconBtn.click();
     DashboardPage.LogoutBtn.click();
 
     // Verify
-    loginPage.title.should("eq", "Login | Delek Homes");
-    loginPage.loginButton.should("be.visible");
+    LoginPage.title.should("eq", "Login | Delek Homes");
+    LoginPage.loginButton.should("be.visible");
   });
 });
